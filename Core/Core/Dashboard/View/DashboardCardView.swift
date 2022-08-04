@@ -129,6 +129,8 @@ public struct DashboardCardView: View {
         groupCards
     }
 
+    @State private var draggedDashboardCard: DashboardCard?
+
     @ViewBuilder func courseCards(_ size: CGSize) -> some View {
         switch cards.state {
         case .loading:
@@ -145,6 +147,11 @@ public struct DashboardCardView: View {
                     // outside the CourseCard, because that isn't observing colors
                     .accentColor(Color(card.color.ensureContrast(against: .white)))
                     .frame(minHeight: 160)
+                    .onDrag {
+                        draggedDashboardCard = card
+                        return NSItemProvider(item: nil, typeIdentifier: "DashboardCardID")
+                    }
+                    .onDrop(of: ["DashboardCardID"], delegate: CourseCardDropDelegate(cardReceivingDrop: card, draggedDashboardCard: $draggedDashboardCard, onOrderChange: self.cards.uploadCardPositions))
             }
             .frame(maxWidth: .infinity, alignment: .leading)
             .padding(.bottom, 2)
@@ -160,6 +167,34 @@ public struct DashboardCardView: View {
                     .multilineTextAlignment(.center)
             }
             .frame(minWidth: size.width, minHeight: size.height)
+        }
+    }
+
+    private struct CourseCardDropDelegate: DropDelegate {
+        @Binding private var draggedDashboardCard: DashboardCard?
+        private let cardReceivingDrop: DashboardCard
+        private let onOrderChange: () -> Void
+
+        public init(cardReceivingDrop: DashboardCard, draggedDashboardCard: Binding<DashboardCard?>, onOrderChange: @escaping () -> Void) {
+            self.cardReceivingDrop = cardReceivingDrop
+            self._draggedDashboardCard = draggedDashboardCard
+            self.onOrderChange = onOrderChange
+        }
+
+        func performDrop(info: DropInfo) -> Bool {
+            true
+        }
+
+        func dropEntered(info: DropInfo) {
+            guard let draggedDashboardCard = draggedDashboardCard,
+                  cardReceivingDrop.id != draggedDashboardCard.id
+            else { return }
+            let tempPosition = cardReceivingDrop.position
+            cardReceivingDrop.position = draggedDashboardCard.position
+            draggedDashboardCard.position = tempPosition
+
+            try? cardReceivingDrop.managedObjectContext?.save()
+            onOrderChange()
         }
     }
 

@@ -64,6 +64,16 @@ class DashboardCardsViewModel: ObservableObject {
         }
     }
 
+    public func uploadCardPositions() {
+        guard case .data(let cards) = state else { return }
+        let payload = cards.reduce(into: [String: Int]()) { dictionary, card in
+            let position = dictionary.count
+            dictionary["course_\(card.id)"] = position
+        }
+        let request = PutDashboardCardPositionsRequest(body: APIDashboardCardPositions(dashboard_positions: payload))
+        env.api.makeRequest(request, callback: { _, _, _ in })
+    }
+
     private func favoritesDidChange() {
         if cards.pending {
             needsRefresh = true

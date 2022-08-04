@@ -1003,6 +1003,7 @@
 		CFB3C4BE25A8A86E003F9AB9 /* ContextCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB3C4BD25A8A86E003F9AB9 /* ContextCardViewModel.swift */; };
 		CFB50C4C2564330600E4AD72 /* HelpLinkRouteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB50C4B2564330600E4AD72 /* HelpLinkRouteTests.swift */; };
 		CFB50C51256439D100E4AD72 /* HelpViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB50C50256439D100E4AD72 /* HelpViewTests.swift */; };
+		CFB9B2F3289BBAED00C18C79 /* APIDashboardCardPositions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB9B2F2289BBAED00C18C79 /* APIDashboardCardPositions.swift */; };
 		CFBF1DF7281FE20200DA99F7 /* DocViewerAnnotationPutResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBF1DF6281FE20200DA99F7 /* DocViewerAnnotationPutResponseHandler.swift */; };
 		CFBF1DF9281FE48200DA99F7 /* DocViewerAnnotationPutResponseHandlerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBF1DF8281FE48200DA99F7 /* DocViewerAnnotationPutResponseHandlerTests.swift */; };
 		CFBF1DFB281FE5B500DA99F7 /* MockDocViewerAnnotationProviderDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBF1DFA281FE5B500DA99F7 /* MockDocViewerAnnotationProviderDelegate.swift */; };
@@ -2409,6 +2410,7 @@
 		CFB3C4BD25A8A86E003F9AB9 /* ContextCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextCardViewModel.swift; sourceTree = "<group>"; };
 		CFB50C4B2564330600E4AD72 /* HelpLinkRouteTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpLinkRouteTests.swift; sourceTree = "<group>"; };
 		CFB50C50256439D100E4AD72 /* HelpViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpViewTests.swift; sourceTree = "<group>"; };
+		CFB9B2F2289BBAED00C18C79 /* APIDashboardCardPositions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIDashboardCardPositions.swift; sourceTree = "<group>"; };
 		CFBF1DF6281FE20200DA99F7 /* DocViewerAnnotationPutResponseHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocViewerAnnotationPutResponseHandler.swift; sourceTree = "<group>"; };
 		CFBF1DF8281FE48200DA99F7 /* DocViewerAnnotationPutResponseHandlerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocViewerAnnotationPutResponseHandlerTests.swift; sourceTree = "<group>"; };
 		CFBF1DFA281FE5B500DA99F7 /* MockDocViewerAnnotationProviderDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDocViewerAnnotationProviderDelegate.swift; sourceTree = "<group>"; };
@@ -4742,6 +4744,7 @@
 		CF4BDB53264530A000A91952 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				CFB9B2F1289BBAED00C18C79 /* CardPositions */,
 				CF3763162837A67900F25B81 /* Invitations */,
 				E88EA0182385B0B4008A587A /* APIDashboard.swift */,
 				7D80AC0D212B4D4100C40ECE /* APIFavorite.swift */,
@@ -5457,6 +5460,14 @@
 				CFB50C50256439D100E4AD72 /* HelpViewTests.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		CFB9B2F1289BBAED00C18C79 /* CardPositions */ = {
+			isa = PBXGroup;
+			children = (
+				CFB9B2F2289BBAED00C18C79 /* APIDashboardCardPositions.swift */,
+			);
+			path = CardPositions;
 			sourceTree = "<group>";
 		};
 		CFBF1DF4281FDBE200DA99F7 /* AnnotationUpload */ = {
@@ -7361,6 +7372,7 @@
 				EB2460262728380E00E4F331 /* K5SubjectHeaderView.swift in Sources */,
 				7DA25FF323F72260005D2121 /* DeveloperMenuViewController.swift in Sources */,
 				7DA25FFF23F7226E005D2121 /* DocViewerViewController.swift in Sources */,
+				CFB9B2F3289BBAED00C18C79 /* APIDashboardCardPositions.swift in Sources */,
 				D9E1BAC12581666B0034C01E /* ContextCardSubmissionRow.swift in Sources */,
 				D91BC856276B7B3C008371B0 /* AssignmentGroupViewModel.swift in Sources */,
 				CF490F29285742430065D242 /* AnnotationExtensions.swift in Sources */,
