@@ -1044,6 +1044,7 @@
 		CFD9B44327EDB7CC0099F173 /* ListWithoutVerticalScrollIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFD9B44227EDB7CC0099F173 /* ListWithoutVerticalScrollIndicator.swift */; };
 		CFD9B44527EDBECD0099F173 /* TabToCellViewModelMapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFD9B44427EDBECD0099F173 /* TabToCellViewModelMapping.swift */; };
 		CFD9B44727EDC40A0099F173 /* TabToCellViewModelMappingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFD9B44627EDC40A0099F173 /* TabToCellViewModelMappingTests.swift */; };
+		CFDACA09289A9C5100662382 /* DashboardContainerViewControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFDACA08289A9C5100662382 /* DashboardContainerViewControllerProtocol.swift */; };
 		CFE307BD27FC72D00075F1CB /* lato_bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CFE307BC27FC72D00075F1CB /* lato_bold.ttf */; };
 		CFE721E72656925D006AE4AD /* TopBarSelectionShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE721E62656925D006AE4AD /* TopBarSelectionShape.swift */; };
 		CFE7B3C026B1581F0092593D /* K5ScheduleEntryViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE7B3BF26B1581F0092593D /* K5ScheduleEntryViewModelTests.swift */; };
@@ -2449,6 +2450,7 @@
 		CFD9B44227EDB7CC0099F173 /* ListWithoutVerticalScrollIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListWithoutVerticalScrollIndicator.swift; sourceTree = "<group>"; };
 		CFD9B44427EDBECD0099F173 /* TabToCellViewModelMapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabToCellViewModelMapping.swift; sourceTree = "<group>"; };
 		CFD9B44627EDC40A0099F173 /* TabToCellViewModelMappingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabToCellViewModelMappingTests.swift; sourceTree = "<group>"; };
+		CFDACA08289A9C5100662382 /* DashboardContainerViewControllerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardContainerViewControllerProtocol.swift; sourceTree = "<group>"; };
 		CFE307BC27FC72D00075F1CB /* lato_bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = lato_bold.ttf; sourceTree = "<group>"; };
 		CFE721E62656925D006AE4AD /* TopBarSelectionShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopBarSelectionShape.swift; sourceTree = "<group>"; };
 		CFE7B3BF26B1581F0092593D /* K5ScheduleEntryViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5ScheduleEntryViewModelTests.swift; sourceTree = "<group>"; };
@@ -4752,6 +4754,7 @@
 		CF4BDB54264530DC00A91952 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				CFDACA08289A9C5100662382 /* DashboardContainerViewControllerProtocol.swift */,
 				7D70869C256C1C6500647D37 /* ConferenceCard.swift */,
 				7D70868A2568937D00647D37 /* CourseCard.swift */,
 				7D70869825699AAA00647D37 /* CourseInvitationCard.swift */,
@@ -7012,6 +7015,7 @@
 				7DA2605323F722D9005D2121 /* Module.swift in Sources */,
 				B102EEB6243B862C002E04F0 /* ModuleItemSequenceViewController.swift in Sources */,
 				7DA2605823F722D9005D2121 /* Permissions.swift in Sources */,
+				CFDACA09289A9C5100662382 /* DashboardContainerViewControllerProtocol.swift in Sources */,
 				7DA260DA23F72359005D2121 /* FloatingButton.swift in Sources */,
 				CF6C100326C5235B002E7FE6 /* PlannerOverrideUpdater.swift in Sources */,
 				EBF58AC72721A7DD008EE2DF /* K5SubjectViewModel.swift in Sources */,
