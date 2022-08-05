@@ -176,6 +176,8 @@ public struct DashboardCardView: View {
                     }
                     .onDrop(of: ["DashboardCardID"],
                             delegate: CourseCardDropDelegate(cardReceivingDrop: card, draggedDashboardCard: $draggedDashboardCard, allCards: cards, onOrderChange: self.cards.uploadCardPositions))
+            } idProvider: { cardIndex in
+                cards[cardIndex].id
             }
             .frame(maxWidth: .infinity, alignment: .leading)
             .padding(.bottom, 2)
@@ -258,7 +260,9 @@ public struct DashboardCardView: View {
                 card.position = index
             }
 
-            try? cardReceivingDrop.managedObjectContext?.save()
+            withAnimation {
+                try? cardReceivingDrop.managedObjectContext?.save()
+            }
 
             onOrderChange()
         }
