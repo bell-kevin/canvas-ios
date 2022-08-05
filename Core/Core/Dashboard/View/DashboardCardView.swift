@@ -53,6 +53,9 @@ public struct DashboardCardView: View {
             ScrollView {
                 VStack(spacing: 0) {
                     CircleRefresh { endRefreshing in
+                        withAnimation {
+                            draggedDashboardCard = nil
+                        }
                         refresh(force: true, onComplete: endRefreshing)
                     }
                     list(CGSize(width: geometry.size.width - 32, height: geometry.size.height))
