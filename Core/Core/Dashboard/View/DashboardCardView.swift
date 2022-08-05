@@ -203,7 +203,10 @@ public struct DashboardCardView: View {
         }
 
         func performDrop(info: DropInfo) -> Bool {
-            draggedDashboardCard = nil
+            withAnimation {
+                draggedDashboardCard = nil
+            }
+
             return true
         }
     }
@@ -226,7 +229,10 @@ public struct DashboardCardView: View {
         }
 
         func performDrop(info: DropInfo) -> Bool {
-            draggedDashboardCard = nil
+            withAnimation {
+                draggedDashboardCard = nil
+            }
+
             return true
         }
 
