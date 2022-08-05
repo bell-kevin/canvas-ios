@@ -66,7 +66,7 @@ public struct DashboardGrid<Content: View, ID: Hashable>: View {
 struct DashboardGridPreviews: PreviewProvider {
     static var previews: some View {
         let labels = [
-            "height of this", "shoud equal to this 2222 2 222222 222222 22 2 2 2222 22 2222 222 \n22222",
+            "height of this", "should equal to this 2222 2 222222 222222 22 2 2 2222 22 2222 222 \n22222",
             "3333 3 333 33 3333333 3333", "4",
             "5",
         ]
