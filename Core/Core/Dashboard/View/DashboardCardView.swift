@@ -75,6 +75,8 @@ public struct DashboardCardView: View {
             showGrade = env.userDefaults?.showGradesOnDashboard == true
         }
         .onReceive(invitationsViewModel.coursesChanged) { _ in refresh(force: true) }
+        .onDrop(of: ["DashboardCardID"],
+                delegate: DropCancelDelegate(draggedDashboardCard: $draggedDashboardCard))
     }
 
     private func setStyle(style: UIUserInterfaceStyle?) {
@@ -164,12 +166,13 @@ public struct DashboardCardView: View {
                     // outside the CourseCard, because that isn't observing colors
                     .accentColor(Color(card.color.ensureContrast(against: .white)))
                     .frame(minHeight: 160)
+                    .opacity(draggedDashboardCard == card ? 0 : 1)
                     .onDrag {
                         draggedDashboardCard = card
                         return NSItemProvider(item: nil, typeIdentifier: "DashboardCardID")
                     }
                     .onDrop(of: ["DashboardCardID"],
-                            delegate: CourseCardDropDelegate(cardReceivingDrop: card, draggedDashboardCard: $draggedDashboardCard, onOrderChange: self.cards.uploadCardPositions))
+                            delegate: CourseCardDropDelegate(cardReceivingDrop: card, draggedDashboardCard: $draggedDashboardCard, allCards: cards, onOrderChange: self.cards.uploadCardPositions))
             }
             .frame(maxWidth: .infinity, alignment: .leading)
             .padding(.bottom, 2)
@@ -188,30 +191,66 @@ public struct DashboardCardView: View {
         }
     }
 
+    private struct DropCancelDelegate: DropDelegate {
+        @Binding private var draggedDashboardCard: DashboardCard?
+
+        public init(draggedDashboardCard: Binding<DashboardCard?>) {
+            self._draggedDashboardCard = draggedDashboardCard
+        }
+
+        func dropUpdated(info: DropInfo) -> DropProposal? {
+            DropProposal(operation: DropOperation.move)
+        }
+
+        func performDrop(info: DropInfo) -> Bool {
+            draggedDashboardCard = nil
+            return true
+        }
+    }
+
     private struct CourseCardDropDelegate: DropDelegate {
         @Binding private var draggedDashboardCard: DashboardCard?
         private let cardReceivingDrop: DashboardCard
         private let onOrderChange: () -> Void
+        private let allCards: [DashboardCard]
 
-        public init(cardReceivingDrop: DashboardCard, draggedDashboardCard: Binding<DashboardCard?>, onOrderChange: @escaping () -> Void) {
+        public init(cardReceivingDrop: DashboardCard, draggedDashboardCard: Binding<DashboardCard?>, allCards: [DashboardCard], onOrderChange: @escaping () -> Void) {
             self.cardReceivingDrop = cardReceivingDrop
             self._draggedDashboardCard = draggedDashboardCard
             self.onOrderChange = onOrderChange
+            self.allCards = allCards
+        }
+
+        func dropUpdated(info: DropInfo) -> DropProposal? {
+            DropProposal(operation: DropOperation.move)
         }
 
         func performDrop(info: DropInfo) -> Bool {
-            true
+            draggedDashboardCard = nil
+            return true
         }
 
         func dropEntered(info: DropInfo) {
             guard let draggedDashboardCard = draggedDashboardCard,
                   cardReceivingDrop.id != draggedDashboardCard.id
             else { return }
-            let tempPosition = cardReceivingDrop.position
-            cardReceivingDrop.position = draggedDashboardCard.position
-            draggedDashboardCard.position = tempPosition
+
+            var newOrder = allCards
+
+            guard let draggedIndex = newOrder.firstIndex(of: draggedDashboardCard),
+                  let insertIndex = newOrder.firstIndex(of: cardReceivingDrop)
+            else {
+                return
+            }
+
+            newOrder.move(fromOffsets: IndexSet(integer: draggedIndex), toOffset: insertIndex > draggedIndex ? insertIndex + 1 : insertIndex)
+
+            for (index, card) in newOrder.enumerated() {
+                card.position = index
+            }
 
             try? cardReceivingDrop.managedObjectContext?.save()
+
             onOrderChange()
         }
     }
