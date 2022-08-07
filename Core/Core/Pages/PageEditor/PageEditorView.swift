@@ -48,14 +48,8 @@ public struct PageEditorView: View {
 
     public var body: some View {
         form
-            .navigationBarTitle(url == nil ? Text("New Page", bundle: .core) : Text("Edit Page", bundle: .core), displayMode: .inline)
+            .navigationBarTitle(url == nil ? Text("New Page", bundle: .core) : Text("Edit Note", bundle: .core), displayMode: .inline)
             .navigationBarItems(
-                leading: Button(action: {
-                    env.router.dismiss(controller)
-                }, label: {
-                    Text("Cancel", bundle: .core)
-                })
-                    .identifier("screen.dismiss"),
                 trailing: Button(action: save, label: {
                     Text("Done", bundle: .core).bold()
                 })

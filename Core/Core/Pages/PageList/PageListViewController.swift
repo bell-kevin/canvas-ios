@@ -60,7 +60,7 @@ public class PageListViewController: UIViewController, ColoredNavViewProtocol {
 
     public override func viewDidLoad() {
         super.viewDidLoad()
-        setupTitleViewInNavbar(title: NSLocalizedString("Pages", bundle: .core, comment: ""))
+        setupTitleViewInNavbar(title: NSLocalizedString("Notes", bundle: .core, comment: ""))
         if canCreatePage {
             let item = UIBarButtonItem(image: .addSolid, style: .plain, target: self, action: #selector(createPage))
             item.accessibilityIdentifier = "PageList.add"
@@ -119,7 +119,7 @@ public class PageListViewController: UIViewController, ColoredNavViewProtocol {
     func update() {
         let isLoading = !frontPage.requested || frontPage.pending || !pages.requested || pages.pending
         loadingView.isHidden = pages.error != nil || !isLoading || refreshControl.isRefreshing
-        emptyView.isHidden = pages.error != nil || isLoading || !frontPage.isEmpty || !pages.isEmpty
+        emptyView.isHidden = pages.error != nil || isLoading || !pages.isEmpty
         errorView.isHidden = pages.error == nil
         let selected = tableView.indexPathForSelectedRow
         tableView.reloadData()
@@ -166,22 +166,15 @@ public class PageListViewController: UIViewController, ColoredNavViewProtocol {
 
 extension PageListViewController: UITableViewDataSource, UITableViewDelegate {
     public func numberOfSections(in tableView: UITableView) -> Int {
-        return frontPage.isEmpty ? 1 : 2
+        return 1
     }
 
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 0 && !frontPage.isEmpty {
-            return 1
-        }
         return pages.hasNextPage ? pages.count + 1 : pages.count
     }
 
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.section == 0 && !frontPage.isEmpty {
-            let cell: PageListFrontPageCell = tableView.dequeue(for: indexPath)
-            cell.update(frontPage.first)
-            return cell
-        }
+
         if pages.hasNextPage, indexPath.row == pages.count {
             return LoadingCell(style: .default, reuseIdentifier: nil)
         }
@@ -191,7 +184,7 @@ extension PageListViewController: UITableViewDataSource, UITableViewDelegate {
     }
 
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let page = (indexPath.section == 0 && !frontPage.isEmpty) ? frontPage.first : pages[indexPath.row]
+        let page = pages[indexPath.row]
         guard let url = page?.htmlURL else { return }
         env.router.route(to: url, from: self, options: .detail)
     }
@@ -203,9 +196,7 @@ extension PageListViewController: UITableViewDataSource, UITableViewDelegate {
     }
 
     public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.section == 0 && !frontPage.isEmpty {
-            return UITableView.automaticDimension
-        } else if indexPath.row == pages.count {
+        if indexPath.row == pages.count {
             // Loading cell height
             return 73
         } else {

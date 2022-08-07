@@ -282,6 +282,11 @@ let router = Router(routes: HelmManager.shared.routeHandlers([
         return PageListViewController.create(context: context, app: .student)
     },
 
+    "/:context/:contextID/notes": { url, _, _ in
+        guard let context = Context(path: url.path) else { return nil }
+        return PageListViewController.create(context: context, app: .student)
+    },
+
     "/:context/:contextID/wiki": { url, _, _ in
         var url = url
         url.path = url.path.replacingOccurrences(of: "wiki", with: "pages/front_page")
@@ -297,9 +302,9 @@ let router = Router(routes: HelmManager.shared.routeHandlers([
         guard let context = Context(path: url.path) else { return nil }
         return CoreHostingController(PageEditorView(context: context))
     },
-    "/:context/:contextID/pages/:url": pageViewController,
+    "/:context/:contextID/pages/:url/edit": pageViewController,
     "/:context/:contextID/wiki/:url": pageViewController,
-    "/:context/:contextID/pages/:url/edit": { url, params, _ in
+    "/:context/:contextID/pages/:url": { url, params, _ in
         guard let context = Context(path: url.path), let slug = params["url"] else { return nil }
         return CoreHostingController(PageEditorView(context: context, url: slug))
     },

@@ -35,6 +35,8 @@ class LoginFindSchoolViewController: UIViewController {
     var method = AuthenticationMethod.normalLogin
     weak var loginDelegate: LoginDelegate?
     var searchTask: APITask?
+    private var lastAccountUserDefault = "lastLoginAccount"
+    private var lastAccount: APIAccountResult?
 
     var notFoundAttributedText: NSAttributedString = {
         let text = NSLocalizedString("Can’t find your school? Try typing the full school URL.", bundle: .core, comment: "")
@@ -77,6 +79,9 @@ class LoginFindSchoolViewController: UIViewController {
             attributes: [.foregroundColor: UIColor.textDark]
         )
         searchField.accessibilityLabel = NSLocalizedString("School’s name", bundle: .core, comment: "")
+        if let data = UserDefaults.standard.data(forKey: lastAccountUserDefault) {
+            lastAccount = try? APIJSONDecoder().decode(APIAccountResult.self, from: data)
+        }
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -173,7 +178,15 @@ extension LoginFindSchoolViewController: UITextFieldDelegate {
 
 extension LoginFindSchoolViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return max(accounts.count, 1)
+        if accounts.isEmpty {
+            if searchField?.text?.isEmpty == true && lastAccount != nil {
+                return 2
+            } else {
+                return 1
+            }
+        } else {
+            return accounts.count
+        }
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -182,8 +195,12 @@ extension LoginFindSchoolViewController: UITableViewDataSource, UITableViewDeleg
         cell.textLabel?.font = .scaledNamedFont(.regular16)
         cell.textLabel?.textColor = .textDarkest
         if accounts.isEmpty {
-            cell.textLabel?.accessibilityIdentifier = "LoginFindAccountResult.emptyCell"
-            cell.textLabel?.attributedText = searchField?.text?.isEmpty == true ? helpAttributedText : notFoundAttributedText
+            if indexPath.row == 0 {
+                cell.textLabel?.accessibilityIdentifier = "LoginFindAccountResult.emptyCell"
+                cell.textLabel?.attributedText = searchField?.text?.isEmpty == true ? helpAttributedText : notFoundAttributedText
+            } else {
+                cell.textLabel?.attributedText = NSAttributedString(string: lastAccount?.name ?? "")
+            }
         } else {
             cell.textLabel?.accessibilityIdentifier = "LoginFindAccountResult.\(accounts[indexPath.row].domain)"
             cell.textLabel?.attributedText = NSAttributedString(string: accounts[indexPath.row].name)
@@ -194,11 +211,20 @@ extension LoginFindSchoolViewController: UITableViewDataSource, UITableViewDeleg
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         if accounts.isEmpty {
-            guard let url = loginDelegate?.helpURL else { return }
-            loginDelegate?.openExternalURL(url)
+            if let lastDomain = lastAccount?.domain, searchField.text?.isEmpty == true {
+                showLoginForHost(lastDomain, authenticationProvider: lastAccount?.authentication_provider)
+            } else {
+                guard let url = loginDelegate?.helpURL else { return }
+                loginDelegate?.openExternalURL(url)
+            }
         } else {
             let account = accounts[indexPath.row]
+            saveAccount(account: account)
             showLoginForHost(account.domain, authenticationProvider: account.authentication_provider)
         }
+    }
+    private func saveAccount(account: APIAccountResult) {
+        let data = try? APIJSONEncoder().encode(account)
+        UserDefaults.standard.set(data, forKey: lastAccountUserDefault)
     }
 }

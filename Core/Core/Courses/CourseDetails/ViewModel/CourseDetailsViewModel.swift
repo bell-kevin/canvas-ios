@@ -177,6 +177,9 @@ public class CourseDetailsViewModel: ObservableObject {
             cellViewModels.append(studentViewCellModel)
         }
 
+        let noteCellViewModel = NoteCellViewModel(course: course)
+        cellViewModels.append(noteCellViewModel)
+
         updateCellSelectionStates(on: cellViewModels, selectedIndex: selectionViewModel.selectedIndex)
         state = .data(cellViewModels)
     }
