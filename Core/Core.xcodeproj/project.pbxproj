@@ -809,6 +809,13 @@
 		B1F3780C22499037000B7CAA /* MockMDMManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F3780B22499037000B7CAA /* MockMDMManager.swift */; };
 		B1F614AE243D0BE700F1FBA3 /* ModuleItemSequenceViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F614AD243D0BE700F1FBA3 /* ModuleItemSequenceViewControllerTests.swift */; };
 		B1F6D6BA22EB675000CDD44D /* SessionDefaultsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F6D6B922EB675000CDD44D /* SessionDefaultsTests.swift */; };
+		B40BAFA828E1A96B00D16A2F /* ExampleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40BAFA728E1A96B00D16A2F /* ExampleViewModel.swift */; };
+		B40BAFAB28E1A98900D16A2F /* Relay.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40BAFAA28E1A98900D16A2F /* Relay.swift */; };
+		B40BAFAD28E1AC4200D16A2F /* ExampleUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40BAFAC28E1AC4200D16A2F /* ExampleUseCase.swift */; };
+		B40BAFB328E1B36E00D16A2F /* ExampleRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40BAFB228E1B36E00D16A2F /* ExampleRepository.swift */; };
+		B40BAFB528E1B44600D16A2F /* ExampleDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40BAFB428E1B44600D16A2F /* ExampleDataSource.swift */; };
+		B40BAFB728E1B63600D16A2F /* LocalDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40BAFB628E1B63600D16A2F /* LocalDataSource.swift */; };
+		B40BAFB928E1C19D00D16A2F /* ExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40BAFB828E1C19D00D16A2F /* ExampleView.swift */; };
 		B434277228CB65070015D597 /* FileSubmissionCleanupTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B434277128CB65070015D597 /* FileSubmissionCleanupTests.swift */; };
 		B4372B5B28AF9CB30030FFB9 /* FileUploadNotificationCardListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4372B5A28AF9CB30030FFB9 /* FileUploadNotificationCardListViewModel.swift */; };
 		B451D3CB28AE83A1009A7AEE /* FileUploadNotificationCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B451D3CA28AE83A1009A7AEE /* FileUploadNotificationCard.swift */; };
@@ -2297,6 +2304,13 @@
 		B1F614AD243D0BE700F1FBA3 /* ModuleItemSequenceViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleItemSequenceViewControllerTests.swift; sourceTree = "<group>"; };
 		B1F6D6B722EB672500CDD44D /* SessionDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionDefaults.swift; sourceTree = "<group>"; };
 		B1F6D6B922EB675000CDD44D /* SessionDefaultsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionDefaultsTests.swift; sourceTree = "<group>"; };
+		B40BAFA728E1A96B00D16A2F /* ExampleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleViewModel.swift; sourceTree = "<group>"; };
+		B40BAFAA28E1A98900D16A2F /* Relay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Relay.swift; sourceTree = "<group>"; };
+		B40BAFAC28E1AC4200D16A2F /* ExampleUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleUseCase.swift; sourceTree = "<group>"; };
+		B40BAFB228E1B36E00D16A2F /* ExampleRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleRepository.swift; sourceTree = "<group>"; };
+		B40BAFB428E1B44600D16A2F /* ExampleDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleDataSource.swift; sourceTree = "<group>"; };
+		B40BAFB628E1B63600D16A2F /* LocalDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalDataSource.swift; sourceTree = "<group>"; };
+		B40BAFB828E1C19D00D16A2F /* ExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleView.swift; sourceTree = "<group>"; };
 		B434277128CB65070015D597 /* FileSubmissionCleanupTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileSubmissionCleanupTests.swift; sourceTree = "<group>"; };
 		B4372B5A28AF9CB30030FFB9 /* FileUploadNotificationCardListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileUploadNotificationCardListViewModel.swift; sourceTree = "<group>"; };
 		B451D3CA28AE83A1009A7AEE /* FileUploadNotificationCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileUploadNotificationCard.swift; sourceTree = "<group>"; };
@@ -2809,6 +2823,7 @@
 		2C964830211E2F1A002C3255 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				B40BAFA928E1A97000D16A2F /* ExampleScene */,
 				CF22C94125F286E000C2E012 /* Accessibility */,
 				7DB92CA824C5FD4A004A6C16 /* AccountNotifications */,
 				9FBFE6D122412B71002B3796 /* ActAsUser */,
@@ -4664,6 +4679,20 @@
 				B1487F92243E333200013404 /* ModuleItemDetailsViewControllerTests.swift */,
 			);
 			path = ModuleItems;
+			sourceTree = "<group>";
+		};
+		B40BAFA928E1A97000D16A2F /* ExampleScene */ = {
+			isa = PBXGroup;
+			children = (
+				B40BAFB828E1C19D00D16A2F /* ExampleView.swift */,
+				B40BAFA728E1A96B00D16A2F /* ExampleViewModel.swift */,
+				B40BAFAC28E1AC4200D16A2F /* ExampleUseCase.swift */,
+				B40BAFB228E1B36E00D16A2F /* ExampleRepository.swift */,
+				B40BAFB428E1B44600D16A2F /* ExampleDataSource.swift */,
+				B40BAFB628E1B63600D16A2F /* LocalDataSource.swift */,
+				B40BAFAA28E1A98900D16A2F /* Relay.swift */,
+			);
+			path = ExampleScene;
 			sourceTree = "<group>";
 		};
 		CF11564E26FB566D00DE25B6 /* Model */ = {
@@ -7358,6 +7387,7 @@
 				CF490F2E28575B4F0065D242 /* DocumentExtensions.swift in Sources */,
 				7DA2601F23F7227A005D2121 /* URLResponseExtensions.swift in Sources */,
 				7DA2602423F722B3005D2121 /* LogEventListViewController.swift in Sources */,
+				B40BAFB328E1B36E00D16A2F /* ExampleRepository.swift in Sources */,
 				7DBD15012547746F00750F52 /* DiscussionEditorView.swift in Sources */,
 				EBAF32F227AAC147000ACD32 /* APICommentLibraryRequest.swift in Sources */,
 				CF34180F28B02F260087433B /* BackgroundURLSessionProvider.swift in Sources */,
@@ -7448,6 +7478,7 @@
 				7DA25FDC23F72148005D2121 /* MDMManager.swift in Sources */,
 				7DA260B323F72352005D2121 /* GetFrontPage.swift in Sources */,
 				CF3E760D2885AE6F00276703 /* LocalNotifications.swift in Sources */,
+				B40BAFA828E1A96B00D16A2F /* ExampleViewModel.swift in Sources */,
 				7DA25FE623F721DE005D2121 /* AddMessage.swift in Sources */,
 				7D7BA23924DB57BD00B1A68B /* CircleProgress.swift in Sources */,
 				CFF64FE527DB5A8700653573 /* StudentViewCellViewModel.swift in Sources */,
@@ -7519,6 +7550,7 @@
 				E8AC2D3224AE3A160053AA8A /* APIAlertThreshold.swift in Sources */,
 				7DA25F9023F72123005D2121 /* SyllabusViewController.swift in Sources */,
 				CF0075DA28746E3B00588E40 /* APIFormData.swift in Sources */,
+				B40BAFAD28E1AC4200D16A2F /* ExampleUseCase.swift in Sources */,
 				B1A7848B2441136C001A2B50 /* GetModules.swift in Sources */,
 				EB7A8FF1285C946400940F3D /* UIApplicationDelegateExtensions.swift in Sources */,
 				CF24634428C74BCC00A77A88 /* FileSubmissionCleanup.swift in Sources */,
@@ -7719,6 +7751,7 @@
 				7D159CEC242E556900A77A15 /* ModuleListViewController.swift in Sources */,
 				7DA260C623F72352005D2121 /* GetConversationCourses.swift in Sources */,
 				7DA260B823F72352005D2121 /* GetQuiz.swift in Sources */,
+				B40BAFB728E1B63600D16A2F /* LocalDataSource.swift in Sources */,
 				7DA2605923F722D9005D2121 /* Quiz.swift in Sources */,
 				CFFA6CF02655628100B47380 /* TopBarItemViewModel.swift in Sources */,
 				CF7C3696267A3CEE00ACAC79 /* TypeSafeCodable.swift in Sources */,
@@ -7739,6 +7772,7 @@
 				7DA25FD623F72148005D2121 /* Brand.swift in Sources */,
 				7DA2609F23F72348005D2121 /* Todo.swift in Sources */,
 				7DA2600C23F7227A005D2121 /* NSPersistentContainerExtensions.swift in Sources */,
+				B40BAFB928E1C19D00D16A2F /* ExampleView.swift in Sources */,
 				7DA2606623F722D9005D2121 /* Tab.swift in Sources */,
 				7DA25FAC23F72136005D2121 /* APIDocViewer.swift in Sources */,
 				CF3E761B28884E5100276703 /* FileProgressItemPreview.swift in Sources */,
@@ -7754,6 +7788,7 @@
 				7DA2603323F722D9005D2121 /* DueViewable.swift in Sources */,
 				CFBF1E0728215E3E00DA99F7 /* Typography.swift in Sources */,
 				7DA25F9723F72136005D2121 /* APIAssignmentList.swift in Sources */,
+				B40BAFB528E1B44600D16A2F /* ExampleDataSource.swift in Sources */,
 				CFEC7F4226B42E50008B9F77 /* K5Preview.swift in Sources */,
 				7D7BA23D24DC58E800B1A68B /* FontExtensions.swift in Sources */,
 				CFCB0F7227CFC1DD008DDEA4 /* QuizzesPanda.swift in Sources */,
@@ -7817,6 +7852,7 @@
 				7DA25FFA23F7226E005D2121 /* DocViewerCommentReplyAnnotation.swift in Sources */,
 				EBF58AC92721A862008EE2DF /* K5SubjectView.swift in Sources */,
 				B4372B5B28AF9CB30030FFB9 /* FileUploadNotificationCardListViewModel.swift in Sources */,
+				B40BAFAB28E1A98900D16A2F /* Relay.swift in Sources */,
 				7DA260C323F72352005D2121 /* UploadManager.swift in Sources */,
 				CF43DE8227CCD6CF00015B6F /* MotionScene.swift in Sources */,
 				7DA260F823F723AB005D2121 /* FileDetailsViewController.swift in Sources */,
