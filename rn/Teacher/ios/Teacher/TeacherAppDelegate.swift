@@ -20,7 +20,6 @@ import AVKit
 import UIKit
 import UserNotifications
 import PSPDFKit
-import Firebase
 import CanvasCore
 import Core
 import React
@@ -184,26 +183,6 @@ class TeacherAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotification
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
         return openURL(url)
     }
-
-    // similar methods exist in all other app delegates
-    // please be sure to update there as well
-    // We can't move this to Core as it would require setting up
-    // Cocoapods for Core to pull in Firebase
-    func configureRemoteConfig() {
-        let remoteConfig = RemoteConfig.remoteConfig()
-        remoteConfig.fetch(withExpirationDuration: 0) { _, _ in
-            remoteConfig.activate { _, _ in
-                let keys = remoteConfig.allKeys(from: .remote)
-                for key in keys {
-                    guard let feature = ExperimentalFeature(rawValue: key) else { continue }
-                    let value = remoteConfig.configValue(forKey: key).boolValue
-                    feature.isEnabled = value
-                    Firebase.Crashlytics.crashlytics().setCustomValue(value, forKey: feature.userDefaultsKey)
-//                    Analytics.setUserProperty(value ? "YES" : "NO", forName: feature.rawValue)
-                }
-            }
-        }
-    }
 }
 
 extension TeacherAppDelegate: AnalyticsHandler {
@@ -333,7 +312,7 @@ extension TeacherAppDelegate {
             let error = error as NSError
             error.showAlert(from: controller)
             if error.shouldRecordInCrashlytics {
-                Firebase.Crashlytics.crashlytics().record(error: error)
+                Crashlytics.shared.record(error: error)
             }
         } }
     }
@@ -342,11 +321,9 @@ extension TeacherAppDelegate {
 // MARK: Crashlytics
 extension TeacherAppDelegate {
     @objc func setupFirebase() {
-        guard !testing else { return }
-
-        if FirebaseOptions.defaultOptions()?.apiKey != nil { FirebaseApp.configure() }
+        let plistPath = Bundle.main.path(forResource: "GoogleService-Info", ofType: "plist")!
+        Crashlytics.shared.initialize(plistPath: plistPath)
         CanvasCrashlytics.setupForReactNative()
-        configureRemoteConfig()
     }
 }
 

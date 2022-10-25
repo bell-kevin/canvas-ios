@@ -18,7 +18,6 @@
 
 import AVKit
 import UIKit
-import Firebase
 import UserNotifications
 import Core
 import SafariServices
@@ -121,26 +120,6 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
             guard let response = response else { return }
             self?.environment.userDefaults?.limitWebAccess = response.permissions?.limit_parent_app_web_access
             completion(response)
-        }
-    }
-
-    // similar methods exist in all other app delegates
-    // please be sure to update there as well
-    // We can't move this to Core as it would require setting up
-    // Cocoapods for Core to pull in Firebase
-    func configureRemoteConfig() {
-        let remoteConfig = RemoteConfig.remoteConfig()
-        remoteConfig.fetch(withExpirationDuration: 0) { _, _ in
-            remoteConfig.activate { _, _ in
-                let keys = remoteConfig.allKeys(from: .remote)
-                for key in keys {
-                    guard let feature = ExperimentalFeature(rawValue: key) else { continue }
-                    let value = remoteConfig.configValue(forKey: key).boolValue
-                    feature.isEnabled = value
-                    Firebase.Crashlytics.crashlytics().setCustomValue(value, forKey: feature.userDefaultsKey)
-//                    Analytics.setUserProperty(value ? "YES" : "NO", forName: feature.rawValue)
-                }
-            }
         }
     }
 }
@@ -247,7 +226,7 @@ extension ParentAppDelegate {
             let error = error as NSError
             error.showAlert(from: controller)
             if error.shouldRecordInCrashlytics {
-                Firebase.Crashlytics.crashlytics().record(error: error)
+                Crashlytics.shared.record(error: error)
             }
         } }
     }
@@ -256,9 +235,8 @@ extension ParentAppDelegate {
 // MARK: Crashlytics
 extension ParentAppDelegate {
     @objc func setupFirebase() {
-        guard !testing else { return }
-        if FirebaseOptions.defaultOptions()?.apiKey != nil { FirebaseApp.configure() }
-        configureRemoteConfig()
+        let plistPath = Bundle.main.path(forResource: "GoogleService-Info", ofType: "plist")!
+        Crashlytics.shared.initialize(plistPath: plistPath)
     }
 }
 

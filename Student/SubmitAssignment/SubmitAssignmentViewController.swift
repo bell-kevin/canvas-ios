@@ -17,7 +17,6 @@
 //
 
 import Core
-import Firebase
 import UIKit
 import Social
 
@@ -72,8 +71,8 @@ class SubmitAssignmentViewController: UIViewController {
     }
 
     private func setupFirebaseServices() {
-        guard FirebaseOptions.defaultOptions()?.apiKey != nil else { return }
-        FirebaseApp.configure()
+        let plistPath = Bundle.main.path(forResource: "GoogleService-Info", ofType: "plist")!
+        Crashlytics.shared.initialize(plistPath: plistPath)
         Core.Analytics.shared.handler = self
     }
 }

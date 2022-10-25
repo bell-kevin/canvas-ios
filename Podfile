@@ -6,12 +6,6 @@ platform :ios, '14.0'
 require_relative './rn/Teacher/node_modules/react-native/scripts/react_native_pods'
 # require_relative './rn/Teacher/node_modules/@react-native-community/cli-platform-ios/native_modules'
 
-def firebase_pods
-  pod 'GoogleUtilities', '~> 7.6'
-  pod 'Firebase/Crashlytics', '~> 8.12.1'
-  pod 'Firebase/RemoteConfig', '~> 8.12.1'
-end
-
 def canvas_crashlytics_rn_firebase_pods
   pod 'GoogleUtilities', '~> 7.6'
   pod 'Firebase/Crashlytics', '~> 8.12.1'
@@ -64,27 +58,22 @@ abstract_target 'defaults' do
 
   target 'Teacher' do
     project 'rn/Teacher/ios/Teacher.xcodeproj'
-    firebase_pods
   end
 
   target 'TeacherTests' do
     project 'rn/Teacher/ios/Teacher.xcodeproj'
-    firebase_pods
   end
 
   target 'Student' do
     project 'Student/Student.xcodeproj'
-    firebase_pods
   end
 
   target 'StudentUnitTests' do
     project 'Student/Student.xcodeproj'
-    firebase_pods
   end
 
   target 'CanvasCore' do
     project 'CanvasCore/CanvasCore.xcodeproj'
-    canvas_crashlytics_rn_firebase_pods
   end
 end
 
@@ -92,7 +81,6 @@ abstract_target 'parent_defaults' do
   use_frameworks!
 
   pspdfkit
-  firebase_pods
 
   target 'Parent' do
     project 'Parent/Parent.xcodeproj'

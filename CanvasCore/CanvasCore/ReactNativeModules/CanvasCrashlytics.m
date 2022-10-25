@@ -18,7 +18,7 @@
 
 // Modified from https://github.com/corymsmith/react-native-fabric
 #import "CanvasCrashlytics.h"
-#import <Firebase/Firebase.h>
+#import <FirebaseCrashlytics/FIRCrashlytics.h>
 #import <os/log.h>
 #import "RCTLog.h"
 
