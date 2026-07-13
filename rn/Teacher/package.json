@@ -43,7 +43,7 @@
     "graphql-tag": "^2.7.3",
     "hoist-non-react-statics": "^3.3.0",
     "knuth-shuffle-seeded": "^1.0.6",
-    "lodash": "^4.17.14",
+    "lodash": "^4.18.1",
     "md5": "^2.2.1",
     "prop-types": "^15.6.0",
     "react": "16.13.1",
@@ -70,10 +70,10 @@
     "redux-actions": "^1.2.2",
     "striptags": "^3.0.1",
     "url-parse": "^1.4.7",
-    "uuid": "^3.1.0"
+    "uuid": "^14.0.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.8.4",
+    "@babel/core": "^7.29.6",
     "@babel/runtime": "^7.8.4",
     "babel-eslint": "^10.0.3",
     "babel-jest": "^25.1.0",
