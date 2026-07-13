@@ -48,7 +48,7 @@
     "prop-types": "^15.6.0",
     "react": "16.13.1",
     "react-apollo": "^2.0.4",
-    "react-native": "0.63.2",
+    "react-native": "0.69.12",
     "react-native-audio": "^3.5.1",
     "react-native-button": "^2.1.0",
     "react-native-camera": "^3.23.1",
@@ -68,13 +68,13 @@
     "react-redux": "^5.0.6",
     "redux": "^3.7.2",
     "redux-actions": "^1.2.2",
-    "striptags": "^3.0.1",
-    "url-parse": "^1.4.7",
-    "uuid": "^14.0.0"
+    "striptags": "^3.2.0",
+    "url-parse": "^1.5.9",
+    "uuid": "^14.0.1"
   },
   "devDependencies": {
     "@babel/core": "^7.29.6",
-    "@babel/runtime": "^7.8.4",
+    "@babel/runtime": "^7.26.10",
     "babel-eslint": "^10.0.3",
     "babel-jest": "^25.1.0",
     "clarify": "^2.1.0",
